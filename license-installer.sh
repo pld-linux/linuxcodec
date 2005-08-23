@@ -26,7 +26,7 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 		cp -i "$3" $SPECDIR || exit 1
 	fi
 	( cd $SPECDIR
-	/usr/bin/builder -nc -ncs --with license_agreement --opts --target=@TARGET_CPU@ @BASE_NAME@.spec
+	/usr/bin/builder -nm -nc -ncs --with license_agreement --opts --target=@TARGET_CPU@ @BASE_NAME@.spec
 	if [ "$?" -ne 0 ]; then
 		exit 2
 	fi
