@@ -31,7 +31,7 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 		exit 2
 	fi
 	RPMNAMES="$RPMDIR/@BASE_NAME@-@VERSION@-@RELEASE@wla.@TARGET_CPU@.rpm"
-	rpm -U $RPMNAMES || echo -e "Install manually the file(s):\n   $RPMNAMES" )
+	rpm -Uhv $RPMNAMES || echo -e "Install manually the file(s):\n   $RPMNAMES" )
 	if [ "$BACKUP" -eq 1 ]; then
 		if [ -f $SPECDIR/@BASE_NAME@.spec.prev ]; then
 			mv -f $SPECDIR/@BASE_NAME@.spec.prev $SPECDIR/@BASE_NAME@.spec
