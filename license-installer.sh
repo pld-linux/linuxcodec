@@ -65,7 +65,6 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 			for i in @COPYSOURCES@; do
 				if [ -f $SOURCEDIR/$i ]; then
 					mv -f $SOURCEDIR/$i.prev $SOURCEDIR/$i
-					BACKUP=1
 				fi
 			done
 		fi
