@@ -38,11 +38,17 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 		fi
 	fi
 else
-	echo "
+	if [ "@LICENSE@" != '@'LICENSE'@' ]; then
+		cat @LICENSE@
+		echo "
+If you accept the above license rebuild the package using:
+"
+	else
+		echo "
 License issues made us not to include inherent files into
 this package by default. If you want to create full working
 package please build it with the following command:
-
-$0 --with license_agreement @SPECFILE@
 "
+	fi
+	echo "$0 --with license_agreement @SPECFILE@"
 fi
