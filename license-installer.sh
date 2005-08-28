@@ -21,16 +21,18 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 		done
 	fi
 	if echo "$3" | grep '\.src\.rpm$' >/dev/null; then
-		( cd $SRPMDIR
+		(
 		if echo "$3" | grep '://' >/dev/null; then
+			cd $SRPMDIR
 			wget --passive-ftp -t0 "$3"
 		else
-			cp -f "$3" .
+			cp -f "$3" $SRPMDIR
+			cd $SRPMDIR
 		fi
 		rpm2cpio `basename "$3"` | ( cd $TMPDIR; cpio -i @BASE_NAME@.spec )
 		if [ '@COPYSOURCES@' != '@'COPYSOURCES'@' ]; then
 			for i in @COPYSOURCES@; do
-				rpm2cpio $i | ( cd $TMPDIR; cpio -i $i )
+				rpm2cpio `basename "$3"` | ( cd $TMPDIR; cpio -i $i )
 			done
 		fi
 	   	)
