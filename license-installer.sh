@@ -12,6 +12,14 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 		BACKUP=1
 		mv -f $SPECDIR/@BASE_NAME@.spec $SPECDIR/@BASE_NAME@.spec.prev
 	fi
+	if [ '@COPYSOURCES@' != '@'COPYSOURCES'@' ]; then
+		for i in @COPYSOURCES@; do
+			if [ -f $SOURCEDIR/$i ]; then
+				mv -f $SOURCEDIR/$i $SOURCEDIR/$i.prev
+				BACKUP=1
+			fi
+		done
+	fi
 	if echo "$3" | grep '\.src\.rpm$' >/dev/null; then
 		( cd $SRPMDIR
 		if echo "$3" | grep '://' >/dev/null; then
@@ -20,10 +28,25 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 			cp -f "$3" .
 		fi
 		rpm2cpio `basename "$3"` | ( cd $TMPDIR; cpio -i @BASE_NAME@.spec )
-		)
+		if [ '@COPYSOURCES@' != '@'COPYSOURCES'@' ]; then
+			for i in @COPYSOURCES@; do
+				rpm2cpio $i | ( cd $TMPDIR; cpio -i $i )
+			done
+		fi
+	   	)
 		cp -i $TMPDIR/@BASE_NAME@.spec $SPECDIR/@BASE_NAME@.spec || exit 1
+		if [ '@COPYSOURCES@' != '@'COPYSOURCES'@' ]; then
+			for i in @COPYSOURCES@; do
+				cp -i $TMPDIR/$i $SOURCEDIR/$i || exit 1
+			done
+		fi
 	else
 		cp -i "$3" $SPECDIR || exit 1
+		if [ '@COPYSOURCES@' != '@'COPYSOURCES'@' ]; then
+			for i in @COPYSOURCES@; do
+				cp -i @DATADIR@/$i $SOURCEDIR/$i || exit 1
+			done
+		fi
 	fi
 	( cd $SPECDIR
 	/usr/bin/builder -nm -nc -ncs --with license_agreement --opts --target=@TARGET_CPU@ @BASE_NAME@.spec
@@ -35,6 +58,14 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 	if [ "$BACKUP" -eq 1 ]; then
 		if [ -f $SPECDIR/@BASE_NAME@.spec.prev ]; then
 			mv -f $SPECDIR/@BASE_NAME@.spec.prev $SPECDIR/@BASE_NAME@.spec
+		fi
+		if [ '@COPYSOURCES@' != '@'COPYSOURCES'@' ]; then
+			for i in @COPYSOURCES@; do
+				if [ -f $SOURCEDIR/$i ]; then
+					mv -f $SOURCEDIR/$i.prev $SOURCEDIR/$i
+					BACKUP=1
+				fi
+			done
 		fi
 	fi
 else
