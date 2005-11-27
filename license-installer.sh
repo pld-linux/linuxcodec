@@ -29,19 +29,11 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 			cp -f "$3" $SRPMDIR
 			cd $SRPMDIR
 		fi
-		rpm2cpio `basename "$3"` | ( cd $TMPDIR; cpio -i @BASE_NAME@.spec )
+		rpm2cpio `basename "$3"` | ( cd $SPECDIR; cpio -i @BASE_NAME@.spec )
 		if [ '@COPYSOURCES@' != '@'COPYSOURCES'@' ]; then
-			for i in @COPYSOURCES@; do
-				rpm2cpio `basename "$3"` | ( cd $TMPDIR; cpio -i $i )
-			done
+			rpm2cpio `basename "$3"` | ( cd $SOURCEDIR; cpio -i @COPYSOURCES@ )
 		fi
 	   	)
-		cp -i $TMPDIR/@BASE_NAME@.spec $SPECDIR/@BASE_NAME@.spec || exit 1
-		if [ '@COPYSOURCES@' != '@'COPYSOURCES'@' ]; then
-			for i in @COPYSOURCES@; do
-				cp -i $TMPDIR/$i $SOURCEDIR/$i || exit 1
-			done
-		fi
 	else
 		cp -i "$3" $SPECDIR || exit 1
 		if [ '@COPYSOURCES@' != '@'COPYSOURCES'@' ]; then
