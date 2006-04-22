@@ -30,7 +30,11 @@ if [ "$1" = "--with" -a "$2" = "license_agreement" ]; then
 		fi
 	fi
 	( cd $SPECDIR
-	/usr/bin/builder --define _topdir $tmp -nm -nc -ncs --with license_agreement --target @TARGET_CPU@ @BASE_NAME@.spec
+	nd=
+	if [ '@USE_DISTFILES@' = 'no' ]; then
+		nd=-nd
+	fi
+	/usr/bin/builder --define _topdir $tmp $nd -nm -nc -ncs --with license_agreement --target @TARGET_CPU@ @BASE_NAME@.spec
 	if [ "$?" -ne 0 ]; then
 		exit 2
 	fi
