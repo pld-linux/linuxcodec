@@ -18,9 +18,9 @@ License:	Free for non-commercial use
 Group:		Libraries
 %if %{with license_agreement}
 Source0:	%{source_url}essential-20061022.tar.bz2
-Source1:	%{source_url}essential-ppc-20061022.tar.bz2
+Source1:	%{source_url}all-ppc-20061022.tar.bz2
 Source2:	%{source_url}essential-amd64-20061203.tar.bz2
-Source3:	%{source_url}essential-alpha-20061028.tar.bz2
+Source3:	%{source_url}all-alpha-20061028.tar.bz2
 BuildRequires:	unzip
 %else
 Source0:	license-installer.sh
@@ -79,7 +79,9 @@ install %{_specdir}/%{base_name}.spec $RPM_BUILD_ROOT%{_datadir}/%{base_name}
 install -d $RPM_BUILD_ROOT%{_libdir}/codecs
 
 # we want only linux codecs here, win one are in w32codec.spec
-rm -f */*.dll */*.qtx */*.ax */*.acm */*.drv */*.xa */*.DLL */*.qts */*.vwp
+rm -f essential-[0-9]+/*.{dll,qtx,ax,acm,drv,xa,DLL,qts,vwp}
+# intel codecs in ppc package
+rm -f all-ppc-[0-9]/*.xa
 
 install */*.* $RPM_BUILD_ROOT%{_libdir}/codecs
 %endif
