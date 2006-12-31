@@ -79,9 +79,9 @@ install %{_specdir}/%{base_name}.spec $RPM_BUILD_ROOT%{_datadir}/%{base_name}
 install -d $RPM_BUILD_ROOT%{_libdir}/codecs
 
 # we want only linux codecs here, win one are in w32codec.spec
-rm -f essential-[0-9]+/*.{dll,qtx,ax,acm,drv,xa,DLL,qts,vwp}
+rm -f essential-[0-9]*/*.{dll,qtx,ax,acm,drv,xa,DLL,qts,vwp}
 # intel codecs in ppc package
-rm -f all-ppc-[0-9]/*.xa
+rm -f all-ppc-[0-9]*/*.xa
 
 install */*.* $RPM_BUILD_ROOT%{_libdir}/codecs
 %endif
