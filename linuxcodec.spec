@@ -77,6 +77,10 @@ install %{_specdir}/%{base_name}.spec $RPM_BUILD_ROOT%{_datadir}/%{base_name}
 
 %else
 install -d $RPM_BUILD_ROOT%{_libdir}/codecs
+
+# we want only linux codecs here, win one are in w32codec.spec
+rm -f */*.dll */*.qtx */*.ax */*.acm */*.drv */*.xa */*.DLL */*.qts */*.vwp
+
 install */*.* $RPM_BUILD_ROOT%{_libdir}/codecs
 %endif
 
