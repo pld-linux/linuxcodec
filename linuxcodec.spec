@@ -1,5 +1,7 @@
+#
 # Conditional build:
 %bcond_with	license_agreement	# generates package
+#
 %define		source_url      http://www2.mplayerhq.hu/MPlayer/releases/codecs/
 #
 %define		base_name	linuxcodec
@@ -33,14 +35,14 @@ ExclusiveArch:	%{ix86} %{x8664} alpha ppc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Libraries required to compress/decompress content of movie files. They
-are used by movie players, but can be used to create compressed movie
-files.
+Libraries required to compress/decompress content of movie files in
+some formats. They are used by movie players, but can be used to
+create compressed movie files.
 
 %description -l pl
-Biblioteki niezbêdne do kompresji/dekompresji filmów. S± one
-wykorzystywane przez odtwarzacze, ale mog± byæ u¿yte do tworzenia
-kompresowanych plików z filmami.
+Biblioteki niezbêdne do kompresji/dekompresji filmów w pewnych
+formatach. S± one wykorzystywane przez odtwarzacze, ale mog± byæ u¿yte
+do tworzenia kompresowanych plików z filmami.
 
 %prep
 %if %{with license_agreement}
