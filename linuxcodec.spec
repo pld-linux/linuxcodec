@@ -30,7 +30,6 @@ Requires:	rpm-build-tools
 Requires:	unzip
 Provides:	%{base_name}
 %endif
-AutoReqProv:	no
 ExclusiveArch:	%{ix86} %{x8664} alpha ppc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
