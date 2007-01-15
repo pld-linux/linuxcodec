@@ -99,7 +99,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %if %{with license_agreement}
-%{_libdir}/codecs
+%dir %{_libdir}/codecs
+%attr(755,root,root) %{_libdir}/codecs/*
 %else
 %attr(755,root,root) %{_bindir}/linuxcodec.install
 %{_datadir}/%{base_name}
