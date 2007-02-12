@@ -6,7 +6,7 @@
 #
 %define		base_name	linuxcodec
 Summary:	Binary compression/decompression libraries used by movie players
-Summary(pl.UTF-8):   Binarne biblioteki do kompresji/dekompresji dla odtwarzaczy filmów
+Summary(pl.UTF-8):	Binarne biblioteki do kompresji/dekompresji dla odtwarzaczy filmów
 %if %{with license_agreement}
 Name:		%{base_name}
 %else
