@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	license_agreement	# generates package
 #
-%define		source_url      http://www2.mplayerhq.hu/MPlayer/releases/codecs/
+%define		source_url	http://www2.mplayerhq.hu/MPlayer/releases/codecs/
 #
 %define		base_name	linuxcodec
 Summary:	Binary compression/decompression libraries used by movie players
