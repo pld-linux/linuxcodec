@@ -14,12 +14,12 @@ Name:		%{base_name}-installer
 %endif
 %define		_rel	1
 # put latest for any tarball date here
-Version:	20061203
+Version:	20071007
 Release:	%{_rel}%{?with_license_agreement:wla}
 License:	Free for non-commercial use
 Group:		Libraries
 %if %{with license_agreement}
-Source0:	%{source_url}essential-20061022.tar.bz2
+Source0:	%{source_url}essential-%{version}.tar.bz2
 Source1:	%{source_url}all-ppc-20061022.tar.bz2
 Source2:	%{source_url}essential-amd64-%{version}.tar.bz2
 Source3:	%{source_url}all-alpha-20061028.tar.bz2
