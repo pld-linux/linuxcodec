@@ -23,11 +23,9 @@ Source0:	%{source_url}essential-%{version}.tar.bz2
 Source1:	%{source_url}all-ppc-20061022.tar.bz2
 Source2:	%{source_url}essential-amd64-%{version}.tar.bz2
 Source3:	%{source_url}all-alpha-20061028.tar.bz2
-BuildRequires:	unzip
 %else
 Source0:	license-installer.sh
 Requires:	rpm-build-tools
-Requires:	unzip
 Provides:	%{base_name}
 %endif
 ExclusiveArch:	%{ix86} %{x8664} alpha ppc
