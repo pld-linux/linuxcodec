@@ -24,8 +24,9 @@ Source1:	%{source_url}all-ppc-20061022.tar.bz2
 Source2:	%{source_url}essential-amd64-%{version}.tar.bz2
 Source3:	%{source_url}all-alpha-20061028.tar.bz2
 %else
-Source0:	license-installer.sh
-Requires:	rpm-build-tools
+Source0:	http://svn.pld-linux.org/svn/license-installer/license-installer.sh
+# Source0-md5:  4fb1600353dd57fe088e0b12fb0ecac2
+Requires:	rpm-build-tools >= 4.4.35
 Provides:	%{base_name}
 %endif
 ExclusiveArch:	%{ix86} %{x8664} alpha ppc
@@ -70,6 +71,7 @@ sed -e '
 	s-@VERSION@-%{version}-g
 	s-@RELEASE@-%{release}-g
 	s,@SPECFILE@,%{_datadir}/%{base_name}/%{base_name}.spec,g
+	s,@DATADIR@,%{_datadir}/%{base_name},g
 ' %{SOURCE0} > $RPM_BUILD_ROOT%{_bindir}/%{base_name}.install
 
 install %{_specdir}/%{base_name}.spec $RPM_BUILD_ROOT%{_datadir}/%{base_name}
