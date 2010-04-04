@@ -5,6 +5,7 @@
 %define		source_url	http://www2.mplayerhq.hu/MPlayer/releases/codecs/
 #
 %define		base_name	linuxcodec
+%define		_rel	2
 Summary:	Binary compression/decompression libraries used by movie players
 Summary(pl.UTF-8):	Binarne biblioteki do kompresji/dekompresji dla odtwarzaczy filmów
 %if %{with license_agreement}
@@ -12,7 +13,6 @@ Name:		%{base_name}
 %else
 Name:		%{base_name}-installer
 %endif
-%define		_rel	1
 # put latest for any tarball date here
 Version:	20071007
 Release:	%{_rel}%{?with_license_agreement:wla}
@@ -25,8 +25,9 @@ Source2:	%{source_url}essential-amd64-%{version}.tar.bz2
 Source3:	%{source_url}all-alpha-20061028.tar.bz2
 %else
 Source0:	http://svn.pld-linux.org/svn/license-installer/license-installer.sh
-# Source0-md5:  4fb1600353dd57fe088e0b12fb0ecac2
-Requires:	rpm-build-tools >= 4.4.35
+# Source0-md5:  329c25f457fea66ec502b7ef70cb9ede
+Requires:	rpm-build-macros >= 1.544
+Requires:	rpm-build-tools >= 4.4.37
 Provides:	%{base_name}
 %endif
 ExclusiveArch:	%{ix86} %{x8664} alpha ppc
