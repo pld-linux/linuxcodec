@@ -26,8 +26,8 @@ Source3:	%{source_url}all-alpha-20061028.tar.bz2
 %else
 Source0:	http://svn.pld-linux.org/svn/license-installer/license-installer.sh
 # Source0-md5:  329c25f457fea66ec502b7ef70cb9ede
-Requires:	rpm-build-macros >= 1.544
 Requires:	rpm-build-tools >= 4.4.37
+Requires:	rpmbuild(macros) >= 1.544
 Provides:	%{base_name}
 %endif
 ExclusiveArch:	%{ix86} %{x8664} alpha ppc
