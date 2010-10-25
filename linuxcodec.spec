@@ -20,12 +20,20 @@ License:	Free for non-commercial use
 Group:		Libraries
 %if %{with license_agreement}
 Source0:	%{source_url}essential-%{version}.tar.bz2
+# NoSource0-md5:	4ea9c2dbd0945c83af1a8d0dd363993c
+NoSource:	0
 Source1:	%{source_url}all-ppc-20061022.tar.bz2
+# NoSource1-md5:	7918b605cca3df7e2c34784f1328e494
+NoSource:	1
 Source2:	%{source_url}essential-amd64-%{version}.tar.bz2
+# NoSource2-md5:	8e1ceeec51469f5baac65e56fac709e8
+NoSource:	2
 Source3:	%{source_url}all-alpha-20061028.tar.bz2
+# NoSource3-md5:	c71cbf23c9ac84b85a15801af6fe5fa4
+NoSource:	3
 %else
-Source0:	http://svn.pld-linux.org/svn/license-installer/license-installer.sh
-# Source0-md5:  329c25f457fea66ec502b7ef70cb9ede
+Source4:	http://svn.pld-linux.org/svn/license-installer/license-installer.sh
+# Source4-md5:  329c25f457fea66ec502b7ef70cb9ede
 Requires:	rpm-build-tools >= 4.4.37
 Requires:	rpmbuild(macros) >= 1.544
 Provides:	%{base_name}
@@ -73,7 +81,7 @@ sed -e '
 	s-@RELEASE@-%{release}-g
 	s,@SPECFILE@,%{_datadir}/%{base_name}/%{base_name}.spec,g
 	s,@DATADIR@,%{_datadir}/%{base_name},g
-' %{SOURCE0} > $RPM_BUILD_ROOT%{_bindir}/%{base_name}.install
+' %{SOURCE4} > $RPM_BUILD_ROOT%{_bindir}/%{base_name}.install
 
 install %{_specdir}/%{base_name}.spec $RPM_BUILD_ROOT%{_datadir}/%{base_name}
 
